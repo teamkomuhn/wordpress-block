@@ -4,26 +4,37 @@
 
 // namespace/name is the computer redable name and title is the human redable name
 wp.blocks.registerBlockType('namespace/name', {
-    title: 'Super cool name',
-    icon: 'smiley', // Use Dashicon icon name: https://developer.wordpress.org/resource/dashicons/
-    category: 'common', // Block category
+    title: 'Custom WordPress Block',
+    icon: 'menu', // Use a Dashicon: https://developer.wordpress.org/resource/dashicons/
+    category: 'text',
     attributes: {
         title: {type: 'string'},
-        content: {type: 'string'} // I think it should use the class instead of a sting Eg:. 'string' => String
+        content: {type: 'string'}
     },
+
     edit: (properties) => {
+
+        const updateContent = (event) => {
+            properties.setAttributes({content: event.target.value})
+        }
+
         return wp.element.createElement(
-            "div",
-            null,
-            wp.element.createElement(
-                "input",
-                null
-            )
+            'input',
+            {
+                type: "text",
+                value: properties.attributes.content,
+                onChange: updateContent
+            }
         )
     },
+
     save: (properties) => {
-        return null
+        return wp.element.createElement(
+            'p',
+            null,
+            `${properties.attributes.content}`
+        );
     }
 })
 
-//wp.element = React reatch may work now but not in the future
+//wp.components

@@ -13,5 +13,5 @@
         wp_enqueue_script('script.js', plugin_dir_url(__FILE__) . 'script.js', array('wp-blocks', 'wp-i18n', 'wp-editor'), true);
     }
 
-    add_action('wp_enqueue_scripts', 'my_enqueue_scripts');
+    add_action('enqueue_block_editor_assets', 'my_enqueue_scripts');
 ?>
