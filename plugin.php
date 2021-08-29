@@ -1,7 +1,7 @@
 <?php
     /*
      * Plugin Name: WordPress Blocks
-     * Description: A simple WordPress Plugin to creata a simple custom Gutenberg Block.
+     * Description: A simple WordPress Plugin to create a simple custom Gutenberg Block.
      * Author: Ayo Reis
      * Author URI: //ayoreis.com/
      * Version 1.0.0
