@@ -13,7 +13,7 @@
     function my_register_block_types() {
         // See the meaning of each attribute of the wp_enqueue_script() function here: https://developer.wordpress.org/reference/functions/wp_enqueue_script/
 
-        wp_enqueue_script('build/index.js', '/build/index.js/', array('wp-blocks'), true);
+        wp_enqueue_script('build/index.js', plugin_dir_path( __FILE__ ) . '/build/index.js/', array('wp-blocks'), true);
 
         register_block_type('namespace/name', array(
             'editor_script' => 'build/index.js'

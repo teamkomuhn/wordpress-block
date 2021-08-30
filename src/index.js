@@ -17,24 +17,11 @@ wp.blocks.registerBlockType('namespace/name', {
             properties.setAttributes({content: event.target.value})
         }
 
-        return wp.element.createElement(
-            'input',
-            {
-                type: "text",
-                value: properties.attributes.content,
-                onChange: updateContent
-            }
-        )
+        return <input type="text"/>
     },
 
     save: (properties) => {
         return (<p>hello</p>)
-
-        // return wp.element.createElement(
-        //     'p',
-        //     null,
-        //     `${properties.attributes.content}`
-        // );
     }
 })
 
