@@ -29,12 +29,15 @@ wp.blocks.registerBlockType('namespace/name', {
     },
 
     save: (properties) => {
-        return wp.element.createElement(
-            'p',
-            null,
-            `${properties.attributes.content}`
-        );
+        return (<p>hello</p>) 
+
+        // return wp.element.createElement(
+        //     'p',
+        //     null,
+        //     `${properties.attributes.content}`
+        // );
     }
 })
 
 //wp.components
+// () and {}
