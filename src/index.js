@@ -2,41 +2,32 @@
 
 
 
-wp.blocks.registerBlockType('namespace/name', {
-    title: 'Custom WordPress Block',
-    icon: 'menu', // Use a Dashicon: https://developer.wordpress.org/resource/dashicons/
-    category: 'text',
-    attributes: {
-        title: {type: 'string'},
-        content: {type: 'string'}
-    },
+// import { useBlockProps } from '@wordpress/block-editor'
 
-    edit: (properties) => {
 
-        const updateContent = (event) => {
-            properties.setAttributes({content: event.target.value})
+wp.blocks.registerBlockType(
+    'namespace/name',
+
+    {
+        title: 'Example: Basic (esnext)',
+        description: 'desc',
+        icon: 'menu',
+        category: 'text',
+
+        example: {},
+
+        edit() {
+            return (
+                <div>Hello World (from the editor).</div>
+            )
+        },
+
+        save() {
+            return (
+                <div>
+                    Hello World (from the frontend).
+                </div>
+            )
         }
-
-        return wp.element.createElement(
-            'input',
-            {
-                type: "text",
-                value: properties.attributes.content,
-                onChange: updateContent
-            }
-        )
-    },
-
-    save: (properties) => {
-        return (<p>hello</p>)
-
-        // return wp.element.createElement(
-        //     'p',
-        //     null,
-        //     `${properties.attributes.content}`
-        // );
     }
-})
-
-//wp.components
-// () and {}
+)
