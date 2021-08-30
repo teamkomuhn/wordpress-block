@@ -1,8 +1,7 @@
 'use strict'
 
-// This wp Objects is a global Object added by WordPress automatically to interact with it.
 
-// namespace/name is the computer redable name and title is the human redable name
+
 wp.blocks.registerBlockType('namespace/name', {
     title: 'Custom WordPress Block',
     icon: 'menu', // Use a Dashicon: https://developer.wordpress.org/resource/dashicons/
@@ -29,7 +28,7 @@ wp.blocks.registerBlockType('namespace/name', {
     },
 
     save: (properties) => {
-        return (<p>hello</p>) 
+        return (<p>hello</p>)
 
         // return wp.element.createElement(
         //     'p',
