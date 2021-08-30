@@ -10,4 +10,4 @@ GitHub Repository of the tutorial: https://github.com/LearnWebCode/simple-block-
 
 ## 🧑‍💻 Setup
 
-- You will need a JSX compiler like [Babel](https://babeljs.io/), [Here's a tutorial on how to install Babel](https://youtu.be/iWUR04B42Hc).
+- You will need a JSX compiler like [Babel](https://babeljs.io/).
