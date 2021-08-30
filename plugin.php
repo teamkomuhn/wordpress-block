@@ -14,7 +14,7 @@
 
         register_block_type('namespace/name', array(
             'editor_script' => 'script.js'
-        ))
+        ));
     }
 
     add_action('init', 'my_register_block_types');
