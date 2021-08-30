@@ -4,7 +4,7 @@
   "description": "A simple WordPress Plugin to create a simple custom Gutenberg Block.",
   "main": "script.js",
   "scripts": {
-    "start": "babel-node ./script.js"
+    "start": "wp-scripts build"
   },
   "repository": {
     "type": "git",
