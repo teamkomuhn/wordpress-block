@@ -6,7 +6,7 @@ A simple WordPress Plugin to create a simple custom Gutenberg Block.
 
 📖 Tutorial I followed: https://youtu.be/Mv68Sa-iHyo.
 
-📎 GitHub Repository of the tutorial: https://github.com/LearnWebCode/simple-block-boilerplate
+GitHub Repository of the tutorial: https://github.com/LearnWebCode/simple-block-boilerplate
 
 ## 🧑‍💻 Setup
 
