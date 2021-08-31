@@ -23,6 +23,7 @@
         );
 
         register_block_type('namespace/name', array(
+            'api_version' => 2,
             'editor_script' => 'build/index.js'
         ));
 
