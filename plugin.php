@@ -24,11 +24,7 @@
 
         register_block_type('namespace/name', array(
             'api_version' => 2,
-<<<<<<< HEAD
             'editor_script' => 'build/index.js'
-=======
-            'editor_script' => 'build/index.js',
->>>>>>> 7120f32b273df5e0752d875a2bf4c638e29f27b5
         ));
 
     }
