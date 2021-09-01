@@ -9,6 +9,12 @@ Second tutorial I watched: https://youtube.com/playlist?list=PLriKzYyLb28lHhftzU
 
 GitHub Repository of the tutorial: https://github.com/LearnWebCode/simple-block-boilerplate
 
+🐈‍⬛ GitHub Repository of the second tutorial: https://github.com/Alecaddd/gutenberg-tutorial
+
+**Note:** the Repositories have the code in separate branches for each part.
+
+---
+
 ## 🧑‍💻 Setup
 
 - ⏬ Install [Node.js](https://nodejs.org/)
