@@ -93,9 +93,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const {
-  registerBlockType
-} = wp.blocks;
-const {
   RichText,
   InspectorControls,
   ColorPalette,
@@ -105,12 +102,11 @@ const {
   PanelBody,
   IconButton
 } = wp.components;
-registerBlockType('namespace/name', {
+wp.blocks.registerBlockType('namespace/name', {
   title: 'Custom Block',
   description: 'Description',
   icon: 'format-image',
   category: 'layout',
-  // custom attributes
   attributes: {
     title: {
       type: 'string',
@@ -168,13 +164,13 @@ registerBlockType('namespace/name', {
     };
 
     return [(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
-      title: 'Font Color Settings'
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Select a Title color:")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorPalette, {
+      title: "Font Color Settings"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorPalette, {
       value: titleColor,
       onChange: onTitleColorChange
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
-      title: 'Background Image Settings'
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Select a Background Image:")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(MediaUpload, {
+      title: "Background Image Settings"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(MediaUpload, {
       onSelect: onSelectImage,
       type: "image",
       value: image,
@@ -185,7 +181,7 @@ registerBlockType('namespace/name', {
         icon: "upload",
         onClick: open
       }, "Background Image")
-    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText, {
+    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText, {
       key: "editable",
       tagName: "h2",
       placeholder: "Your CTA Title",
@@ -211,13 +207,11 @@ registerBlockType('namespace/name', {
       body,
       titleColor
     } = attributes;
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      class: "cta-container"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText.Content, {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText.Content, {
       style: {
         color: titleColor
       },
-      tagName: "h1",
+      tagName: "h2",
       value: title
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText.Content, {
       tagName: "p",
