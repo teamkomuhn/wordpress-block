@@ -96,64 +96,44 @@ const {
   RichText,
   InspectorControls,
   ColorPalette,
-  MediaUpload
-} = wp.editor;
+  MediaUpload,
+  AlignmentToolbar,
+  BlockControls
+} = wp.blockEditor;
 const {
   PanelBody,
-  IconButton
+  Button,
+  FormToggle
 } = wp.components;
 wp.blocks.registerBlockType('namespace/name', {
   title: 'Custom Block',
   description: 'Description',
   icon: 'format-image',
-  category: 'layout',
+  //dashicons
+  category: 'text',
   attributes: {
-    title: {
-      type: 'string',
-      source: 'html',
-      selector: 'h2'
-    },
-    titleColor: {
-      type: 'string',
-      default: 'black'
-    },
-    body: {
-      type: 'string',
-      source: 'html',
-      selector: 'p'
-    },
     image: {
       type: 'string',
       default: null
+    },
+    content: {
+      type: 'string',
+      source: 'html',
+      selector: 'p'
     }
   },
-
-  edit({
+  edit: ({
     attributes,
     setAttributes
-  }) {
+  }) => {
     const {
-      title,
-      body,
-      titleColor,
-      image
+      image,
+      content
     } = attributes; // custom functions
 
-    const onChangeTitle = newTitle => {
+    const onChangeContent = value => {
       setAttributes({
-        title: newTitle
-      });
-    };
-
-    const onChangeBody = newBody => {
-      setAttributes({
-        body: newBody
-      });
-    };
-
-    const onTitleColorChange = newColor => {
-      setAttributes({
-        titleColor: newColor
+        content: value
       });
     };
 
@@ -164,11 +144,6 @@ wp.blocks.registerBlockType('namespace/name', {
     };
 
     return [(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
-      title: "Font Color Settings"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorPalette, {
-      value: titleColor,
-      onChange: onTitleColorChange
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
       title: "Background Image Settings"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(MediaUpload, {
       onSelect: onSelectImage,
@@ -176,49 +151,43 @@ wp.blocks.registerBlockType('namespace/name', {
       value: image,
       render: ({
         open
-      }) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(IconButton, {
+      }) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Button, {
         className: "editor-media-placeholder__button is-button is-default is-large",
         icon: "upload",
         onClick: open
       }, "Background Image")
-    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText, {
-      key: "editable",
-      tagName: "h2",
-      placeholder: "Your CTA Title",
-      value: title,
-      onChange: onChangeTitle,
-      style: {
-        color: titleColor
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+      htmlFor: "toggle"
+    }, "Dark background"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(FormToggle, {
+      id: "toggle",
+      onChange: obj => {
+        console.log(obj);
       }
+    })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: image,
+      alt: ""
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText, {
       key: "editable",
       tagName: "p",
-      placeholder: "Your CTA Description",
-      value: body,
-      onChange: onChangeBody
+      placeholder: "Type some text...",
+      value: content,
+      onChange: onChangeContent,
+      inlineToolbar: true
     }))];
   },
-
-  save({
-    attributes
-  }) {
+  save: properties => {
     const {
-      title,
-      body,
-      titleColor
-    } = attributes;
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText.Content, {
-      style: {
-        color: titleColor
-      },
-      tagName: "h2",
-      value: title
+      image,
+      content
+    } = properties.attributes;
+    return [(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: image,
+      alt: "Image..."
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText.Content, {
       tagName: "p",
-      value: body
-    }));
+      value: content
+    }))];
   }
-
 });
 }();
 /******/ })()

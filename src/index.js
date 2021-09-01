@@ -6,12 +6,15 @@ const {
     RichText,
     InspectorControls,
     ColorPalette,
-    MediaUpload
-} = wp.editor
+    MediaUpload,
+    AlignmentToolbar,
+    BlockControls
+} = wp.blockEditor
 
 const {
     PanelBody,
-    IconButton
+    Button,
+    FormToggle
 } = wp.components
 
 wp.blocks.registerBlockType(
@@ -21,121 +24,96 @@ wp.blocks.registerBlockType(
     {
         title: 'Custom Block',
         description: 'Description',
-        icon: 'format-image',
-        category: 'layout',
+        icon: 'format-image', //dashicons
+        category: 'text',
 
         attributes: {
-            title: {
-                type: 'string',
-                source: 'html',
-                selector: 'h2'
-            },
-
-            titleColor: {
-                type: 'string',
-                default: 'black'
-            },
-
-            body: {
-                type: 'string',
-                source: 'html',
-                selector: 'p'
-            },
-
             image: {
                 type: 'string',
                 default: null
+            },
+
+            content: {
+                type: 'string',
+                source: 'html',
+                selector: 'p'
             }
         },
 
-        edit({ attributes, setAttributes }) {
+        edit: ({attributes, setAttributes}) => {
+
             const {
-                title,
-                body,
-                titleColor,
-                image
+                image, content
             } = attributes
 
             // custom functions
-            const onChangeTitle = (newTitle) => {
-                setAttributes( { title: newTitle } )
-            }
-
-            const onChangeBody = (newBody) => {
-                setAttributes( { body: newBody } )
-            }
-
-            const onTitleColorChange = (newColor) => {
-                setAttributes( { titleColor: newColor } )
+            const onChangeContent = (value) => {
+                setAttributes({content: value})
             }
 
             const onSelectImage = (newImage) => {
-                setAttributes( {image: newImage.sizes.full.url} )
+                setAttributes({image: newImage.sizes.full.url})
             }
 
 
             return ([
                 <InspectorControls>
-                    <PanelBody title="Font Color Settings">
-                        <ColorPalette
-                            value={ titleColor }
-                            onChange={ onTitleColorChange }/>
-                    </PanelBody>
-
                     <PanelBody title="Background Image Settings">
                         <MediaUpload
                             onSelect={ onSelectImage }
                             type="image"
                             value={ image }
                             render={ ( { open } ) => (
-    							<IconButton
+    							<Button
     								className="editor-media-placeholder__button is-button is-default is-large"
     								icon="upload"
     								onClick={ open }>
     								 Background Image
-    							</IconButton>
+    							</Button>
     						)}/>
+
+                            <div>
+                                <label htmlFor="toggle">Dark background</label>
+                                <FormToggle
+                                    id="toggle"
+                                    onChange={(obj) => {
+                                        console.log(obj);
+                                    }}/>
+                            </div>
+
                     </PanelBody>
                 </InspectorControls>,
 
                 <>
-                    <RichText
-                        key="editable"
-                        tagName="h2"
-                        placeholder="Your CTA Title"
-                        value={ title }
-                        onChange={ onChangeTitle }
-                        style={ { color: titleColor } }/>
+                    <img src={image} alt=""/>
 
                     <RichText
                         key="editable"
                         tagName="p"
-                        placeholder="Your CTA Description"
-                        value={ body }
-                        onChange={ onChangeBody }/>
+                        placeholder="Type some text..."
+                        value={content}
+                        onChange={onChangeContent}
+                        inlineToolbar/>
                 </>
             ])
         },
 
-        save({ attributes }) {
-            const {
-                title,
-                body,
-                titleColor
-            } = attributes
+        save: properties => {
 
-            return (
+            const {
+                image,
+                content
+            } = properties.attributes
+
+            return ([
                 <>
-                    <RichText.Content
-                        style={{color: titleColor}}
-                        tagName="h2"
-                        value={ title }/>
+                    <img src={image} alt="Image..."/>
 
                     <RichText.Content
                         tagName="p"
-                        value={ body }/>
+                        value={content}/>
                 </>
-            )
+            ])
         }
     }
 )

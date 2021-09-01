@@ -14,13 +14,21 @@
 
         wp_register_script(
             'build/index.js',
-            plugins_url( 'build/index.js', __FILE__ ),
+            plugins_url( 'build/index.js', __FILE__ ), //plugin dir path
             array('wp-blocks', 'wp-editor', 'wp-components')
+        );
+
+        wp_register_style(
+            'styles.css',
+            plugins_url('/styles.css', __FILE__),
+            array(),
         );
 
         register_block_type('namespace/name', array(
             'api_version' => 2,
-            'editor_script' => 'build/index.js'
+            'editor_script' => 'build/index.js',
+            // editor style too
+            'style' => 'styles.css'
         ));
     }
 
