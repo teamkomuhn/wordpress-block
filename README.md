@@ -16,7 +16,7 @@ A simple WordPress Plugin to create a simple custom Gutenberg Block.
 
 1. https://github.com/Alecaddd/gutenberg-tutorial
 
-**⚠️ Note:** The main Branch of the [Repositories](#-🐈‍⬛-github-repositories-of-the-tutorials) only contains the template files! See the other Branches for the right code.
+**⚠️ Note:** The main Branch of the Repositories only contains the template files! See the other Branches for the right code.
 
 ---
 
