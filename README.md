@@ -1,6 +1,6 @@
 # 🧱 WordPress Blocks.
 
-A simple WordPress Plugin to create a simple custom Gutenberg Block.
+A simple WordPress Plugin to create a simple Gutenberg Block.
 
 ---
 
@@ -23,6 +23,8 @@ A simple WordPress Plugin to create a simple custom Gutenberg Block.
 ## 🧑‍💻 Setup
 
 - ⏬ Install [Node.js](https://nodejs.org/)
-- In the terminal `cd` into the plugin directory and run `npm start`, to end it type `Ctrl + C`
+- In the terminal `cd` into the plugin directory.
+- Install the necessary `npm packages` with `npm install` or `npm i`
+- Finally run the compiler with `npm start`, to end it press `Ctrl` + `C`.
 
 - You could also use [Babel](https://babeljs.io/), I am not using it because I had trouble setting it up.
