@@ -2,53 +2,138 @@
 
 
 
-import { useBlockProps } from '@wordpress/block-editor' //No idea what this does but it wont work without
+const { registerBlockType } = wp.blocks
 
-wp.blocks.registerBlockType(
-    'namespace/name',
+const {
+    RichText,
+    InspectorControls,
+    ColorPalette,
+    MediaUpload
+} = wp.editor
 
-    {
-        apiVersion: 2,
+const {
+    PanelBody,
+    IconButton
+} = wp.components
 
-        title: 'Example: Basic (esnext)',
-        description: 'desc',
-        icon: 'menu',
-        category: 'text',
+registerBlockType('namespace/name', {
+    title: 'Custom Block',
+    description: 'Description',
+    icon: 'format-image',
+    category: 'layout',
 
-        attributes: {
-            title: {type: 'string'},
-            description: {type: 'string'}
+    // custom attributes
+    attributes: {
+        title: {
+            type: 'string',
+            source: 'html',
+            selector: 'h2'
+        },
+        titleColor: {
+            type: 'string',
+            default: 'black'
+        },
+        body: {
+            type: 'string',
+            source: 'html',
+            selector: 'p'
         },
 
-        edit: (properties) => {
-            const updateTitle = (event) => {
-                properties.setAttributes({
-                    title: event.target.value
-                })
-            }
-
-            const updateDescription = (event) => {
-                properties.setAttributes({
-                    description: event.target.value
-                })
-            }
-
-            return (
-                <>
-                    <input onChange={updateTitle} type="text" value={properties.attributes.title} placeholder="Title..."/>
-                    <input onChange={updateDescription} type="text" value={properties.attributes.description} placeholder="Description..."/>
-                </>
-            )
-        },
-
-        save: (properties) => {
-
-            return (
-                <>
-                    <h1>{properties.attributes.title}</h1>
-                    <p>{properties.attributes.description}</p>
-                </>
-            )
+        image: {
+            type: 'string',
+            default: null
         }
+    },
+
+    edit({ attributes, setAttributes }) {
+        const {
+            title,
+            body,
+            titleColor,
+            image
+        } = attributes
+
+        // custom functions
+        const onChangeTitle = (newTitle) => {
+            setAttributes( { title: newTitle } )
+        }
+
+        const onChangeBody = (newBody) => {
+            setAttributes( { body: newBody } )
+        }
+
+        const onTitleColorChange = (newColor) => {
+            setAttributes( { titleColor: newColor } )
+        }
+
+        const onSelectImage = (newImage) => {
+            setAttributes( {image: newImage.sizes.full.url} )
+        }
+
+
+        return ([
+            <InspectorControls>
+                <PanelBody title={ 'Font Color Settings' }>
+                    <p><strong>Select a Title color:</strong></p>
+                    <ColorPalette
+                        value={ titleColor }
+                        onChange={ onTitleColorChange }/>
+                </PanelBody>
+
+                <PanelBody title={ 'Background Image Settings' }>
+                    <p><strong>Select a Background Image:</strong></p>
+                    <MediaUpload
+                        onSelect={ onSelectImage }
+                        type="image"
+                        value={ image }
+                        render={ ( { open } ) => (
+							<IconButton
+								className="editor-media-placeholder__button is-button is-default is-large"
+								icon="upload"
+								onClick={ open }>
+								 Background Image
+							</IconButton>
+						)}/>
+                </PanelBody>
+            </InspectorControls>,
+
+            <div>
+                <RichText
+                    key="editable"
+                    tagName="h2"
+                    placeholder="Your CTA Title"
+                    value={ title }
+                    onChange={ onChangeTitle }
+                    style={ { color: titleColor } }/>
+
+                <RichText
+                    key="editable"
+                    tagName="p"
+                    placeholder="Your CTA Description"
+                    value={ body }
+                    onChange={ onChangeBody }/>
+            </div>
+        ])
+    },
+
+    save({ attributes }) {
+        const {
+            title,
+            body,
+            titleColor
+        } = attributes
+
+        return (
+            <div class="cta-container">
+                <RichText.Content
+                    style={{color: titleColor}}
+                    tagName="h1"
+                    value={ title }/>
+
+                <RichText.Content
+                    tagName="p"
+                    value={ body }/>
+            </div>
+        )
     }
-)
+})
