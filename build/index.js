@@ -108,6 +108,9 @@ const {
   FormToggle,
   TextControl
 } = wp.components;
+const {
+  useState
+} = wp.element;
 wp.blocks.registerBlockType('namespace/name', {
   apiVersion: 2,
   title: 'Custom Block',

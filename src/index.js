@@ -20,6 +20,10 @@ const {
     TextControl
 } = wp.components
 
+const {
+    useState
+} = wp.element
+
 wp.blocks.registerBlockType(
 
     'namespace/name',
