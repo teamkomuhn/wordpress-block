@@ -7,8 +7,7 @@ const {
     InspectorControls,
     ColorPalette,
     MediaUpload,
-    AlignmentToolbar,
-    BlockControls
+    InnerBlocks
 } = wp.blockEditor
 
 const {
@@ -58,7 +57,7 @@ wp.blocks.registerBlockType(
 
             return ([
                 <InspectorControls>
-                    <PanelBody title="Background Image Settings">
+                    <PanelBody title="Image Settings">
                         <MediaUpload
                             onSelect={ onSelectImage }
                             type="image"
@@ -84,7 +83,7 @@ wp.blocks.registerBlockType(
                     </PanelBody>
                 </InspectorControls>,
 
-                <>
+                <div>
                     <img src={image} alt=""/>
 
                     <RichText
@@ -94,7 +93,9 @@ wp.blocks.registerBlockType(
                         value={content}
                         onChange={onChangeContent}
                         inlineToolbar/>
-                </>
+
+                    <InnerBlocks/>
+                </div>
             ])
         },
 
@@ -106,13 +107,15 @@ wp.blocks.registerBlockType(
             } = properties.attributes
 
             return ([
-                <>
+                <div>
                     <img src={image} alt="Image..."/>
 
                     <RichText.Content
                         tagName="p"
                         value={content}/>
-                </>
+
+                    <InnerBlocks.Content/>
+                </div>
             ])
         }
     }

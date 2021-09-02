@@ -97,8 +97,7 @@ const {
   InspectorControls,
   ColorPalette,
   MediaUpload,
-  AlignmentToolbar,
-  BlockControls
+  InnerBlocks
 } = wp.blockEditor;
 const {
   PanelBody,
@@ -144,7 +143,7 @@ wp.blocks.registerBlockType('namespace/name', {
     };
 
     return [(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
-      title: "Background Image Settings"
+      title: "Image Settings"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(MediaUpload, {
       onSelect: onSelectImage,
       type: "image",
@@ -163,7 +162,7 @@ wp.blocks.registerBlockType('namespace/name', {
       onChange: obj => {
         console.log(obj);
       }
-    })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
       src: image,
       alt: ""
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText, {
@@ -173,20 +172,20 @@ wp.blocks.registerBlockType('namespace/name', {
       value: content,
       onChange: onChangeContent,
       inlineToolbar: true
-    }))];
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InnerBlocks, null))];
   },
   save: properties => {
     const {
       image,
       content
     } = properties.attributes;
-    return [(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    return [(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
       src: image,
       alt: "Image..."
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText.Content, {
       tagName: "p",
       value: content
-    }))];
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InnerBlocks.Content, null))];
   }
 });
 }();
