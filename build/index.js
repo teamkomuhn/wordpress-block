@@ -230,7 +230,7 @@ wp.blocks.registerBlockType('namespace/block-side-note', {
       label: "Add an ID for this side note.",
       value: id,
       onChange: onChangeID
-    })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText, {
+    })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", useBlockProps(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText, {
       key: "editable",
       tagName: "p",
       placeholder: "Type some text...",

@@ -182,7 +182,7 @@ wp.blocks.registerBlockType(
                     </PanelBody>
                 </InspectorControls>,
 
-                <>
+                <div {...useBlockProps()}>
                     <RichText
                         key="editable"
                         tagName="p"
@@ -190,7 +190,7 @@ wp.blocks.registerBlockType(
                         value={content}
                         onChange={onChangeContent}
                         inlineToolbar/>
-                </>
+                </div>
             ])
         },
 
