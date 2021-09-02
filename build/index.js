@@ -97,9 +97,7 @@ const {
   RichText,
   InspectorControls,
   MediaUpload,
-  InnerBlocks,
-  BlockControls,
-  BlockSettingsMenu
+  InnerBlocks
 } = wp.blockEditor;
 const {
   Panel,
