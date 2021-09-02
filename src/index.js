@@ -80,12 +80,12 @@ wp.blocks.registerBlockType(
                             <PanelRow>
 
                             </PanelRow>
-                                // <label htmlFor="toggle">Dark background</label>
-                                // <FormToggle
-                                //     id="toggle"
-                                //     onChange={(obj) => {
-                                //         console.log(obj);
-                                //     }}/>
+                                <label htmlFor="toggle">Dark background</label>
+                                <FormToggle
+                                    id="toggle"
+                                    onChange={(event) => {
+                                        event.target.checked = !event.target.checked
+                                    }}/>
 
 
                     </PanelBody>
