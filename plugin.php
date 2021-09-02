@@ -21,7 +21,7 @@
         wp_register_style(
             'styles.css',
             plugins_url('/styles.css', __FILE__),
-            array(),
+            array()
         );
 
         register_block_type('namespace/name', array(
