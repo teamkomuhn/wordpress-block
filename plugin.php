@@ -30,6 +30,13 @@
             // editor style too
             // 'style' => 'styles.css'
         ));
+
+        register_block_type('namespace/block-side-note', array(
+            'api_version' => 2,
+            'editor_script' => 'build/index.js',
+            // editor style too
+            //'style' => 'styles.css'
+        ));
     }
 
     add_action('init', 'my_register_block_types');

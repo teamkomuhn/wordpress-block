@@ -97,7 +97,9 @@ const {
   RichText,
   InspectorControls,
   MediaUpload,
-  InnerBlocks
+  InnerBlocks,
+  BlockControls,
+  BlockSettingsMenu
 } = wp.blockEditor;
 const {
   Panel,
@@ -105,7 +107,8 @@ const {
   PanelRow,
   PanelHeader,
   Button,
-  FormToggle
+  FormToggle,
+  TextControl
 } = wp.components;
 wp.blocks.registerBlockType('namespace/name', {
   apiVersion: 2,
@@ -188,6 +191,76 @@ wp.blocks.registerBlockType('namespace/name', {
       tagName: "p",
       value: content
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InnerBlocks.Content, null))];
+  }
+});
+/* BLOCK SIDE NOTE */
+
+wp.blocks.registerBlockType('namespace/block-side-note', {
+  title: 'Side Note',
+  description: 'Description',
+  icon: 'align-right',
+  //dashicons
+  category: 'text',
+  attributes: {
+    id: {
+      type: 'string'
+    },
+    content: {
+      type: 'string',
+      source: 'attribute',
+      selector: 'p'
+    }
+  },
+  edit: ({
+    attributes,
+    setAttributes
+  }) => {
+    const {
+      id,
+      content
+    } = attributes; // custom functions
+
+    const onChangeID = value => {
+      setAttributes({
+        id: value
+      });
+    };
+
+    const onChangeContent = value => {
+      setAttributes({
+        content: value
+      });
+    };
+
+    return [(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
+      title: "Side Note ID"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TextControl, {
+      label: "Add an ID for this side note.",
+      value: id,
+      onChange: onChangeID
+    })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText, {
+      key: "editable",
+      tagName: "p",
+      placeholder: "Type some text...",
+      value: content,
+      onChange: onChangeContent,
+      inlineToolbar: true
+    }))];
+  },
+  save: properties => {
+    const {
+      id,
+      content
+    } = properties.attributes;
+    return [(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("aside", {
+      class: "block-side-note",
+      id: id
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      class: "icon-close"
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText.Content, {
+      tagName: "p",
+      value: content
+    }))];
   }
 });
 }();
