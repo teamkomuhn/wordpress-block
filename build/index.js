@@ -110,7 +110,8 @@ const {
 } = wp.components;
 const {
   useState
-} = wp.element;
+} = wp.element; // @wordpress/element
+
 wp.blocks.registerBlockType('namespace/name', {
   apiVersion: 2,
   title: 'Custom Block',
@@ -161,14 +162,7 @@ wp.blocks.registerBlockType('namespace/name', {
         ,
         onClick: open
       }, "Background Image")
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelRow, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-      htmlFor: "toggle"
-    }, "Dark background"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(FormToggle, {
-      id: "toggle",
-      onChange: event => {
-        console.log(!event.target.checked);
-      }
-    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", useBlockProps(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelRow, null))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", useBlockProps(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
       src: image,
       alt: ""
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText, {
@@ -212,23 +206,20 @@ wp.blocks.registerBlockType('namespace/block-side-note', {
       selector: 'p'
     }
   },
-  edit: ({
-    attributes,
-    setAttributes
-  }) => {
+  edit: properties => {
     const {
       id,
       content
-    } = attributes; // custom functions
+    } = properties.attributes;
 
     const onChangeID = value => {
-      setAttributes({
+      properties.setAttributes({
         id: value
       });
     };
 
     const onChangeContent = value => {
-      setAttributes({
+      properties.setAttributes({
         content: value
       });
     };

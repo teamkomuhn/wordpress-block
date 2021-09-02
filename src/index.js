@@ -22,7 +22,7 @@ const {
 
 const {
     useState
-} = wp.element
+} = wp.element // @wordpress/element
 
 wp.blocks.registerBlockType(
 
@@ -85,13 +85,6 @@ wp.blocks.registerBlockType(
                             <PanelRow>
 
                             </PanelRow>
-                                <label htmlFor="toggle">Dark background</label>
-                                <FormToggle
-                                    id="toggle"
-                                    onChange={(event) => {
-                                        console.log(!event.target.checked)
-                                    }}/>
-
 
                     </PanelBody>
                 </InspectorControls>,
@@ -134,6 +127,8 @@ wp.blocks.registerBlockType(
     }
 )
 
+
+
 /* BLOCK SIDE NOTE */
 
 wp.blocks.registerBlockType(
@@ -159,20 +154,20 @@ wp.blocks.registerBlockType(
             }
         },
 
-        edit: ({attributes, setAttributes}) => {
+        edit: properties => {
 
             const {
-                id, content
-            } = attributes
+                id,
+                content
+            } = properties.attributes
 
-            // custom functions
             const onChangeID = (value) => {
-                setAttributes({id: value})
-            }
-            const onChangeContent = (value) => {
-                setAttributes({content: value})
+                properties.setAttributes({id: value})
             }
 
+            const onChangeContent = (value) => {
+                properties.setAttributes({content: value})
+            }
 
             return ([
                 <InspectorControls>
@@ -188,7 +183,6 @@ wp.blocks.registerBlockType(
                 </InspectorControls>,
 
                 <>
-
                     <RichText
                         key="editable"
                         tagName="p"
@@ -203,7 +197,8 @@ wp.blocks.registerBlockType(
         save: properties => {
 
             const {
-                id, content
+                id,
+                content
             } = properties.attributes
 
             return ([
