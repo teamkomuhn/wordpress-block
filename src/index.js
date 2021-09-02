@@ -202,8 +202,8 @@ wp.blocks.registerBlockType(
             } = properties.attributes
 
             return ([
-                <aside class="block-side-note" id={id}>
-                    <span class="icon-close"></span>
+                <aside className="block-side-note" id={id}>
+                    <span className="icon-close"></span>
                     <RichText.Content
                         tagName="p"
                         value={content}/>

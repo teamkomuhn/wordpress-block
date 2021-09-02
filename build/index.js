@@ -245,10 +245,10 @@ wp.blocks.registerBlockType('namespace/block-side-note', {
       content
     } = properties.attributes;
     return [(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("aside", {
-      class: "block-side-note",
+      className: "block-side-note",
       id: id
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-      class: "icon-close"
+      className: "icon-close"
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText.Content, {
       tagName: "p",
       value: content
