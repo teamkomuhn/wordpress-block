@@ -26,7 +26,7 @@ wp.blocks.registerBlockType(
 
         title: 'Custom Block',
         description: 'Description',
-        icon: 'format-image', //dashicons
+        icon: 'format-image', // Dashicon
         category: 'text',
 
         attributes: {
@@ -63,15 +63,15 @@ wp.blocks.registerBlockType(
                 <InspectorControls>
                     <PanelBody title="Image Settings">
                         <MediaUpload
-                            onSelect={ onSelectImage }
+                            onSelect={onSelectImage}
                             type="image"
-                            value={ image }
-                            render={ ( { open } ) => (
+                            value={image}
+                            render={{open} => (
     							<Button
     								className="editor-media-placeholder__button is-button is-default is-large"
-    								icon="upload"
-    								onClick={ open }>
-    								 Background Image
+    								icon="upload" // Dashicon
+    								onClick={open}>
+    								Background Image
     							</Button>
     						)}/>
 
