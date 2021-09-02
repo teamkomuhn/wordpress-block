@@ -2,15 +2,15 @@
 
 
 
-const {
+import {
     useBlockProps,
     RichText,
     InspectorControls,
     MediaUpload,
     InnerBlocks
-} = wp.blockEditor
+} from '@wordpress/block-editor'
 
-const {
+import {
     Panel,
     PanelBody,
     PanelRow,
@@ -18,11 +18,11 @@ const {
     Button,
     FormToggle,
     TextControl
-} = wp.components
+} from '@wordpress/components'
 
-const {
+import {
     useState
-} = wp.element // @wordpress/element
+} from '@wordpress/element'
 
 wp.blocks.registerBlockType(
 
@@ -81,11 +81,6 @@ wp.blocks.registerBlockType(
     								Background Image
     							</Button>
     						)}/>
-
-                            <PanelRow>
-
-                            </PanelRow>
-
                     </PanelBody>
                 </InspectorControls>,
 
