@@ -28,7 +28,7 @@
             'api_version' => 2,
             'editor_script' => 'build/index.js',
             // editor style too
-            'style' => 'styles.css'
+            // 'style' => 'styles.css'
         ));
     }
 

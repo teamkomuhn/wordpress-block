@@ -3,6 +3,7 @@
 
 
 const {
+    useBlockProps,
     RichText,
     InspectorControls,
     ColorPalette,
@@ -21,6 +22,8 @@ wp.blocks.registerBlockType(
     'namespace/name',
 
     {
+        apiVersion: 2,
+
         title: 'Custom Block',
         description: 'Description',
         icon: 'format-image', //dashicons
@@ -51,7 +54,7 @@ wp.blocks.registerBlockType(
             }
 
             const onSelectImage = (newImage) => {
-                setAttributes({image: newImage.sizes.full.url})
+                setAttributes({image: newImage.sizes.full.url}) // <= Should handle multiple sizes here
             }
 
 
@@ -83,7 +86,7 @@ wp.blocks.registerBlockType(
                     </PanelBody>
                 </InspectorControls>,
 
-                <div>
+                <div {...useBlockProps()}>
                     <img src={image} alt=""/>
 
                     <RichText

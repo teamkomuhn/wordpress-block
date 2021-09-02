@@ -93,6 +93,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const {
+  useBlockProps,
   RichText,
   InspectorControls,
   ColorPalette,
@@ -105,6 +106,7 @@ const {
   FormToggle
 } = wp.components;
 wp.blocks.registerBlockType('namespace/name', {
+  apiVersion: 2,
   title: 'Custom Block',
   description: 'Description',
   icon: 'format-image',
@@ -139,7 +141,7 @@ wp.blocks.registerBlockType('namespace/name', {
     const onSelectImage = newImage => {
       setAttributes({
         image: newImage.sizes.full.url
-      });
+      }); // <= Should handle multiple sizes here
     };
 
     return [(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
@@ -162,7 +164,7 @@ wp.blocks.registerBlockType('namespace/name', {
       onChange: obj => {
         console.log(obj);
       }
-    })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", useBlockProps(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
       src: image,
       alt: ""
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RichText, {
