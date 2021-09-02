@@ -123,23 +123,20 @@ wp.blocks.registerBlockType('namespace/name', {
       selector: 'p'
     }
   },
-  edit: ({
-    attributes,
-    setAttributes
-  }) => {
+  edit: properties => {
     const {
       image,
       content
-    } = attributes; // custom functions
+    } = properties.attributes; // custom functions
 
     const onChangeContent = value => {
-      setAttributes({
+      properties.etAttributes({
         content: value
       });
     };
 
     const onSelectImage = newImage => {
-      setAttributes({
+      propertiesetAttributes({
         image: newImage.sizes.full.url
       }); // <= Should handle multiple sizes here
     };

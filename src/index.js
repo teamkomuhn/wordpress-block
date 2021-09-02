@@ -42,19 +42,20 @@ wp.blocks.registerBlockType(
             }
         },
 
-        edit: ({attributes, setAttributes}) => {
+        edit: properties => {
 
             const {
-                image, content
-            } = attributes
+                image,
+                content
+            } = properties.attributes
 
             // custom functions
             const onChangeContent = (value) => {
-                setAttributes({content: value})
+                properties.etAttributes({content: value})
             }
 
             const onSelectImage = (newImage) => {
-                setAttributes({image: newImage.sizes.full.url}) // <= Should handle multiple sizes here
+                propertiesetAttributes({image: newImage.sizes.full.url}) // <= Should handle multiple sizes here
             }
 
 
