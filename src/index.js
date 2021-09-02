@@ -11,8 +11,10 @@ const {
 } = wp.blockEditor
 
 const {
+    Panel,
     PanelBody,
     PanelRow,
+    PanelHeader,
     Button,
     FormToggle
 } = wp.components
@@ -66,7 +68,7 @@ wp.blocks.registerBlockType(
                             onSelect={onSelectImage}
                             type="image"
                             value={image}
-                            render={{open} => (
+                            render={({open}) => (
     							<Button
     								className="editor-media-placeholder__button is-button is-default is-large"
     								icon="upload" // Dashicon
@@ -75,14 +77,16 @@ wp.blocks.registerBlockType(
     							</Button>
     						)}/>
 
-                            <div>
-                                <label htmlFor="toggle">Dark background</label>
-                                <FormToggle
-                                    id="toggle"
-                                    onChange={(obj) => {
-                                        console.log(obj);
-                                    }}/>
-                            </div>
+                            <PanelRow>
+
+                            </PanelRow>
+                                // <label htmlFor="toggle">Dark background</label>
+                                // <FormToggle
+                                //     id="toggle"
+                                //     onChange={(obj) => {
+                                //         console.log(obj);
+                                //     }}/>
+
 
                     </PanelBody>
                 </InspectorControls>,
