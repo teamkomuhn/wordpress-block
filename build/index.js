@@ -96,7 +96,6 @@ const {
   useBlockProps,
   RichText,
   InspectorControls,
-  ColorPalette,
   MediaUpload,
   InnerBlocks
 } = wp.blockEditor;
