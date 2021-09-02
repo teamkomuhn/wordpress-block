@@ -101,6 +101,7 @@ const {
 } = wp.blockEditor;
 const {
   PanelBody,
+  PanelRow,
   Button,
   FormToggle
 } = wp.components;
