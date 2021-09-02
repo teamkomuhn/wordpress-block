@@ -16,7 +16,7 @@ import {
     PanelRow,
     PanelHeader,
     Button,
-    FormToggle,
+    ToggleControl,
     TextControl
 } from '@wordpress/components'
 
@@ -51,6 +51,11 @@ wp.blocks.registerBlockType(
 
         edit: properties => {
 
+            let [
+                state,
+                setState
+            ] = useState(false)
+
             const {
                 image,
                 content
@@ -62,14 +67,14 @@ wp.blocks.registerBlockType(
             }
 
             const onSelectImage = (newImage) => {
-                properties.setAttributes({image: newImage.sizes.full.url}) // <= Should handle multiple sizes here
+                properties.setAttributes({image: newImage.sizes.full.url}) // Should handle multiple device screen sizes here
             }
-
 
             return ([
                 <InspectorControls>
                     <PanelBody title="Image Settings">
-                        <MediaUpload
+                        <PanelRow>
+                            <MediaUpload
                             onSelect={onSelectImage}
                             type="image"
                             value={image}
@@ -81,6 +86,17 @@ wp.blocks.registerBlockType(
     								Background Image
     							</Button>
     						)}/>
+                        </PanelRow>
+
+                        <PanelRow>
+                            <ToggleControl
+                                label="Toggle a dark overlay for the image"
+                                help="help?..."
+                                checked={state}
+                                onChange={() => {
+                                    setState((state) => !state)
+                                }}/>
+                        </PanelRow>
                     </PanelBody>
                 </InspectorControls>,
 
