@@ -142,7 +142,7 @@ wp.blocks.registerBlockType('namespace/name', {
     };
 
     const onSelectImage = newImage => {
-      propertiesetAttributes({
+      properties.setAttributes({
         image: newImage.sizes.full.url
       }); // <= Should handle multiple sizes here
     };

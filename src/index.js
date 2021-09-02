@@ -62,7 +62,7 @@ wp.blocks.registerBlockType(
             }
 
             const onSelectImage = (newImage) => {
-                propertiesetAttributes({image: newImage.sizes.full.url}) // <= Should handle multiple sizes here
+                properties.setAttributes({image: newImage.sizes.full.url}) // <= Should handle multiple sizes here
             }
 
 
