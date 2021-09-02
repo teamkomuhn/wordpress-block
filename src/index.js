@@ -7,7 +7,9 @@ const {
     RichText,
     InspectorControls,
     MediaUpload,
-    InnerBlocks
+    InnerBlocks,
+    BlockControls,
+    BlockSettingsMenu
 } = wp.blockEditor
 
 const {
@@ -16,7 +18,8 @@ const {
     PanelRow,
     PanelHeader,
     Button,
-    FormToggle
+    FormToggle,
+    TextControl
 } = wp.components
 
 wp.blocks.registerBlockType(
@@ -124,6 +127,90 @@ wp.blocks.registerBlockType(
 
                     <InnerBlocks.Content/>
                 </div>
+            ])
+        }
+    }
+)
+
+/* BLOCK SIDE NOTE */
+
+wp.blocks.registerBlockType(
+
+    'namespace/block-side-note',
+
+    {
+        title: 'Side Note',
+        description: 'Description',
+        icon: 'align-right', //dashicons
+        category: 'text',
+
+        attributes: {
+
+            id: {
+                type: 'string'
+            },
+
+            content: {
+                type: 'string',
+                source: 'attribute',
+                selector: 'p'
+            }
+        },
+
+        edit: ({attributes, setAttributes}) => {
+
+            const {
+                id, content
+            } = attributes
+
+            // custom functions
+            const onChangeID = (value) => {
+                setAttributes({id: value})
+            }
+            const onChangeContent = (value) => {
+                setAttributes({content: value})
+            }
+
+
+            return ([
+                <InspectorControls>
+                    <PanelBody title="Side Note ID">
+                        <PanelRow>
+                            <TextControl
+                                label="Add an ID for this side note."
+                                value={id}
+                                onChange={onChangeID}
+                            />
+                        </PanelRow>
+                    </PanelBody>
+                </InspectorControls>,
+
+                <>
+
+                    <RichText
+                        key="editable"
+                        tagName="p"
+                        placeholder="Type some text..."
+                        value={content}
+                        onChange={onChangeContent}
+                        inlineToolbar/>
+                </>
+            ])
+        },
+
+        save: properties => {
+
+            const {
+                id, content
+            } = properties.attributes
+
+            return ([
+                <aside class="block-side-note" id={id}>
+                    <span class="icon-close"></span>
+                    <RichText.Content
+                        tagName="p"
+                        value={content}/>
+                </aside>
             ])
         }
     }
