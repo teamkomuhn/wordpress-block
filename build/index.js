@@ -162,7 +162,7 @@ wp.blocks.registerBlockType('namespace/name', {
     }, "Dark background"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(FormToggle, {
       id: "toggle",
       onChange: event => {
-        event.target.checked = !event.target.checked;
+        console.log(!event.target.checked);
       }
     }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", useBlockProps(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
       src: image,

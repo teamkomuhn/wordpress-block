@@ -15,7 +15,7 @@
         wp_register_script(
             'build/index.js',
             plugins_url( 'build/index.js', __FILE__ ), //plugin dir path
-            array('wp-blocks', 'wp-editor', 'wp-components')
+            array('wp-blocks', 'wp-editor', 'wp-element', 'wp-components')
         );
 
         wp_register_style(

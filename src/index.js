@@ -84,7 +84,7 @@ wp.blocks.registerBlockType(
                                 <FormToggle
                                     id="toggle"
                                     onChange={(event) => {
-                                        event.target.checked = !event.target.checked
+                                        console.log(!event.target.checked)
                                     }}/>
 
 
