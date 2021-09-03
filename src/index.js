@@ -7,7 +7,8 @@ import {
     RichText,
     InspectorControls,
     MediaUpload,
-    InnerBlocks
+    InnerBlocks,
+    AlignmentToolbar
 } from '@wordpress/block-editor'
 
 import {
