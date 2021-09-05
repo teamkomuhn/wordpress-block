@@ -73,32 +73,34 @@ wp.blocks.registerBlockType(
 
             return ([
                 <InspectorControls>
-                    <PanelBody title="Image Settings">
-                        <PanelRow>
-                            <MediaUpload
-                            onSelect={onSelectImage}
-                            type="image"
-                            value={image}
-                            render={({open}) => (
-    							<Button
-    								className="editor-media-placeholder__button is-button is-default is-large"
-    								icon="upload" // Dashicon
-    								onClick={open}>
-    								Background Image
-    							</Button>
-    						)}/>
-                        </PanelRow>
+                    // <Panel header="Headrt">
+                        <PanelBody title="Image Settings">
+                            <PanelRow>
+                                <MediaUpload
+                                onSelect={onSelectImage}
+                                type="image"
+                                value={image}
+                                render={({open}) => (
+                                    <Button
+                                        className="editor-media-placeholder__button is-button is-default is-large"
+                                        icon="upload" // Dashicon
+                                        onClick={open}>
+                                        Background Image
+                                    </Button>
+                                )}/>
+                            </PanelRow>
 
-                        <PanelRow>
-                            <ToggleControl
-                                label="Toggle a dark overlay for the image"
-                                help="help?..."
-                                checked={state}
-                                onChange={() => {
-                                    setState((state) => !state)
-                                }}/>
-                        </PanelRow>
-                    </PanelBody>
+                            <PanelRow>
+                                <ToggleControl
+                                    label="Toggle a dark overlay for the image"
+                                    help="help?..."
+                                    checked={state}
+                                    onChange={() => {
+                                        setState((state) => !state)
+                                    }}/>
+                            </PanelRow>
+                        </PanelBody>
+                    // </Panel>
                 </InspectorControls>,
 
                 <div {...useBlockProps()}>
