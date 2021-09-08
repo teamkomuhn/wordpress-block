@@ -47,6 +47,10 @@ wp.blocks.registerBlockType(
                 type: 'string',
                 source: 'html',
                 selector: 'p'
+            },
+
+            color: {
+                type: 'string'
             }
         },
 
@@ -73,38 +77,36 @@ wp.blocks.registerBlockType(
 
             return ([
                 <InspectorControls>
-                    // <Panel header="Headrt">
-                        <PanelBody title="Image Settings">
-                            <PanelRow>
-                                <MediaUpload
-                                onSelect={onSelectImage}
-                                type="image"
-                                value={image}
-                                render={({open}) => (
-                                    <Button
-                                        className="editor-media-placeholder__button is-button is-default is-large"
-                                        icon="upload" // Dashicon
-                                        onClick={open}>
-                                        Background Image
-                                    </Button>
-                                )}/>
-                            </PanelRow>
+                    <PanelBody title="Image Settings">
+                        <PanelRow>
+                            <MediaUpload
+                            onSelect={onSelectImage}
+                            type="image"
+                            value={image}
+                            render={({open}) => (
+                                <Button
+                                    className="editor-media-placeholder__button is-button is-default is-large"
+                                    icon="upload" // Dashicon
+                                    onClick={open}>
+                                    Background Image
+                                </Button>
+                            )}/>
+                        </PanelRow>
 
-                            <PanelRow>
-                                <ToggleControl
-                                    label="Toggle a dark overlay for the image"
-                                    help="help?..."
-                                    checked={state}
-                                    onChange={() => {
-                                        setState((state) => !state)
-                                    }}/>
-                            </PanelRow>
-                        </PanelBody>
-                    // </Panel>
+                        <PanelRow>
+                            <ToggleControl
+                                label="Toggle a dark overlay for the image"
+                                help="help?..."
+                                checked={state}
+                                onChange={() => {
+                                    setState((state) => !state)
+                                }}/>
+                        </PanelRow>
+                    </PanelBody>
                 </InspectorControls>,
 
                 <div {...useBlockProps()}>
-                    <img src={image} alt=""/>
+                    <img src={image} alt="Image..."/>
 
                     <RichText
                         key="editable"
@@ -126,7 +128,7 @@ wp.blocks.registerBlockType(
                 content
             } = properties.attributes
 
-            return ([
+            return (
                 <div>
                     <img src={image} alt="Image..."/>
 
@@ -136,7 +138,7 @@ wp.blocks.registerBlockType(
 
                     <InnerBlocks.Content/>
                 </div>
-            ])
+            )
         }
     }
 )

@@ -1,1 +1,4 @@
-
+.entry-content {
+    background-color: red;
+    /* background-color: var(--var); */
+}

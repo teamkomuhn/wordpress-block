@@ -26,9 +26,9 @@
 
         register_block_type('namespace/name', array(
             'api_version' => 2,
-            'editor_script' => 'build/index.js',
+            'editor_script' => 'build/index.js'
             // 'editor_style => 'uri'
-            'style' => 'styles.css'
+            // 'style' => 'styles.css'
         ));
 
         register_block_type('namespace/block-side-note', array(
