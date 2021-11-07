@@ -1,5 +1,4 @@
-'use strict'
-
+`use strict`
 
 
 import {
@@ -7,9 +6,7 @@ import {
     RichText,
     InspectorControls,
     MediaUpload,
-    InnerBlocks,
-    AlignmentToolbar
-} from '@wordpress/block-editor'
+} from '@wordpress/block-editor' // I dont use template literals here because the compiler throws an error
 
 import {
     Panel,
@@ -18,39 +15,44 @@ import {
     PanelHeader,
     Button,
     ToggleControl,
-    TextControl
+    TextControl,
+    SelectControl
 } from '@wordpress/components'
 
 import {
-    useState
+    useState,
+    useEffect
 } from '@wordpress/element'
+
+
+// BLOCK TEMPLATE
 
 wp.blocks.registerBlockType(
 
-    'namespace/name',
+    'blocks/name',
 
     {
         apiVersion: 2,
 
         title: 'Custom Block',
-        description: 'Description',
-        icon: 'format-image', // Dashicon
-        category: 'text',
+        description: `Description`,
+        icon: `format-image`, // Dashicon
+        category: `text`,
 
         attributes: {
             image: {
-                type: 'string',
+                type: `string`,
                 default: null
             },
 
             content: {
-                type: 'string',
-                source: 'html',
-                selector: 'p'
+                type: `string`,
+                source: `html`,
+                selector: `p`
             },
 
             color: {
-                type: 'string'
+                type: `string`
             }
         },
 
@@ -68,7 +70,7 @@ wp.blocks.registerBlockType(
 
             // custom functions
             const onChangeContent = (value) => {
-                properties.etAttributes({content: value})
+                properties.setAttributes({content: value})
             }
 
             const onSelectImage = (newImage) => {
@@ -144,29 +146,28 @@ wp.blocks.registerBlockType(
 )
 
 
-
-/* BLOCK SIDE NOTE */
+// BLOCK SIDE NOTE
 
 wp.blocks.registerBlockType(
 
-    'namespace/block-side-note',
+    `blocks/block-side-note`,
 
     {
-        title: 'Side Note',
-        description: 'Description',
-        icon: 'align-right', //dashicons
-        category: 'text',
+        title: `Side Note`,
+        description: `Description`,
+        icon: `align-right`, //dashicons
+        category: `text`,
 
         attributes: {
 
             id: {
-                type: 'string'
+                type: `string`
             },
 
             content: {
-                type: 'string',
-                source: 'attribute',
-                selector: 'p'
+                type: `string`,
+                source: `attribute`,
+                selector: `p`
             }
         },
 
@@ -228,3 +229,131 @@ wp.blocks.registerBlockType(
         }
     }
 )
+
+
+// BLOCK GET POSTS
+
+const useConstructor = callback => {
+    const [ hasBeenCalled, setHasBeenCalled ] = useState(false)
+    if (hasBeenCalled) return
+    callback()
+    setHasBeenCalled(true)
+}
+
+
+const Post = ({properties}) => {
+
+    const [ options, setOptions ] = useState([])
+    const [ result, setResult ]   = useState(<p>Loading...</p>)
+    const [ id, setId ]           = useState(properties.attributes.id)
+    const [ posts, setPosts ]     = useState(null)
+
+
+    const updateId = newId => {
+        newId = Number(newId)
+
+        setId(newId)
+        properties.setAttributes({ id: newId })
+    }
+
+    const createOptions = source => {
+
+        source.forEach( post => {
+
+            setOptions( oldOptions => {
+                return [
+                    ...oldOptions,
+    
+                    {
+                        label: post.title.rendered,
+                        value: post.id
+                    }
+                ]
+    
+            })
+
+        })
+    }
+
+
+    useConstructor(() => {
+
+        fetch(`../../wp-json/wp/v2/posts`)
+
+        .then(response => response.json())
+
+        .then(posts => {
+            setPosts(posts)
+
+            createOptions(posts)
+        })
+    })
+
+    useEffect(() => {
+        if (posts !== null) { 
+
+            const postIsSelected = id !== -1
+
+            if (postIsSelected) {
+
+                const post = posts.find(post => post.id === id)
+
+                setResult(<article>
+                    <h2>{post.title.rendered}</h2>
+                    <p>{post.excerpt.rendered}</p>
+                </article>)
+
+            } else setResult(<p>Select a post.</p>)
+
+        } else setResult(<p>No posts... Create some first.</p>)
+    }, [ posts, id ])
+
+    
+    return [
+        <InspectorControls>
+
+            <SelectControl
+                label = 'Select a Post'
+                value = {id}
+                options = {options}
+                onChange = {updateId}
+            />
+
+        </InspectorControls>,
+        
+        result
+    ]
+}
+
+wp.blocks.registerBlockType(
+
+    `blocks/block-get-posts`,
+
+    {
+        apiVersion: 2,
+
+        title: `Block get posts`,
+        description: `Description`,
+        icon: `embed-post`, // https://developer.wordpress.org/resource/dashicons
+        category: `text`,
+
+        attributes: {
+            id: {
+                type: 'number',
+                default: -1
+            }
+        },
+
+        edit: properties => {
+
+            return <div { ...useBlockProps() }>
+                <Post properties = {properties} />
+            </div>
+        },
+
+        save: properties => {
+            return <p>Hello, world!</p>
+        }
+    }
+)
+

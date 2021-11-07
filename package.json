@@ -5,9 +5,7 @@
   "main": "script.js",
   "scripts": {
     "build": "wp-scripts build",
-    "build:custom": "wp-scripts build script.jsx --output-path=",
-    "start": "wp-scripts start",
-    "start:custom": "wp-scripts start script.jsx --output-path=."
+    "start": "wp-scripts start"
   },
   "repository": {
     "type": "git",

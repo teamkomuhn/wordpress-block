@@ -1,6 +1,6 @@
 <?php
     /*
-     * Plugin Name: WordPress Blocks
+     * Plugin Name: Mindworks WordPress Blocks
      * Description: A simple WordPress Plugin to create a simple custom Gutenberg Block.
      * Author: Ayo Reis
      * Author URI: //ayoreis.com/
@@ -18,24 +18,27 @@
             array('wp-blocks', 'wp-editor', 'wp-element', 'wp-components')
         );
 
-        wp_register_style(
-            'styles.css',
-            plugins_url('/styles.css', __FILE__),
-            array()
-        );
+        // wp_register_style(
+        //     'styles.css',
+        //     plugins_url('/styles.css', __FILE__),
+        //     array()
+        // );
 
-        register_block_type('namespace/name', array(
+        register_block_type('blocks/name', array(
             'api_version' => 2,
             'editor_script' => 'build/index.js'
             // 'editor_style => 'uri'
             // 'style' => 'styles.css'
         ));
 
-        register_block_type('namespace/block-side-note', array(
+        register_block_type('blocks/block-side-note', array(
             'api_version' => 2,
-            'editor_script' => 'build/index.js',
-            // editor style too
-            //'style' => 'styles.css'
+            'editor_script' => 'build/index.js'
+        ));
+
+        register_block_type('blocks/block-get-posts', array(
+            'api_version' => 2,
+            'editor_script' => 'build/index.js'
         ));
     }
 
